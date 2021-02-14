@@ -1,0 +1,9 @@
+<div class="row align-items-center justify-content-center gx-1 pb-4 pt-2">
+  <i (click)="emit(1)" class="fas fa-angle-double-left mx-2 fa-lg"></i>
+  <i (click)="prev()" class="fas fa-angle-left mx-2 fa-lg"></i>
+  <p class="mb-1 mx-4">
+    {{ currentPage }} / {{ totalPages }}
+  </p>
+  <i (click)="next()" class="fas fa-angle-right mx-2 fa-lg"></i>
+  <i (click)="emit(totalPages)" class="fas fa-angle-double-right mx-2 fa-lg"></i>
+</div>
