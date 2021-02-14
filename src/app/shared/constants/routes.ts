@@ -1,4 +1,4 @@
-export enum Routes {
+export enum PathRoutes {
     HOME = '',
     EVENT = 'event'
 }
