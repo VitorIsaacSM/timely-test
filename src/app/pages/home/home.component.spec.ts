@@ -22,4 +22,8 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // should fetch events on init
+  // should display the loading while fetching
+  // should open the event page
 });

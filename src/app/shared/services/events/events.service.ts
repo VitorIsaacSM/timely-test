@@ -11,10 +11,10 @@ export interface EventList {
 }
 
 export interface GetEventsParams {
-  group_by_date: string;
-  start_date: string;
-  per_page: string;
-  page: string;
+  group_by_date?: string;
+  start_date?: string;
+  per_page?: string;
+  page?: string;
   categories?: string;
   tags?: string;
 }

@@ -1,10 +1,23 @@
-<div class="card m-5 p-5">
-  <div *ngFor="let date of eventDates; let i = index">
-    <i class="fas fa-times"></i>
-    <p class="mb-1">{{ date }}</p>
-    <p *ngFor="let event of events[date]" class="p-2">
-      {{ event.title }}
-    </p>
-    <hr>
+<div class="container">
+  <div class="d-flex justify-content-center" *ngIf="isLoadingPage">
+    <app-loading></app-loading>
   </div>
+  <ng-container *ngIf="!isLoadingPage">
+    <div *ngFor="let date of eventDates; let i = index" class="p-2">
+      <h4 class="mb-3 mt-3">
+        <i class="fas fa-calendar-day"></i>
+        {{ date | date:'fullDate' }}
+      </h4>
+      <div class="row row-cols-md-3 row-cols-1 g-2">
+        <div *ngFor="let event of events[date]" class="col mb-3">
+          <app-event-card [event]="event"></app-event-card>
+        </div>
+      </div>
+    </div>
+    <app-pagination
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (eventChangePage)="loadEvents({ page: $event })">
+    </app-pagination>
+  </ng-container>
 </div>

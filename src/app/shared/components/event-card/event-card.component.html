@@ -1,0 +1,26 @@
+<div class="card container">
+  <div class="row">
+    <img
+      class="col-sm-3 col-md-12 p-0"
+      [src]="cardImage || 'assets/default-event-image.png'"
+      alt="Event image">
+    <div class="col-sm-9 col-md-12 p-0">
+      <div class="card-body">
+        <h5 class="card-title">{{ event.title }}</h5>
+        <p class="card-text">
+          {{ event.description_short }}
+          <i *ngIf="!event.description_short">No description</i>
+        </p>
+        <div class="d-flex align-items-center justify-content-between">
+          <p class="card-text mb-0">
+            <small class="text-muted">
+              <i class="far fa-clock"></i>
+              {{ event.start_datetime | date:'shortTime' }}
+            </small>
+          </p>
+          <a class="mb-0 card-link" (click)="eventSeeDetails.emit(event)">See details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
