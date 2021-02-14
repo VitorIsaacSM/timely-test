@@ -7,16 +7,16 @@ import Event from '../../models/event';
 import { Pagination } from '../../models/pagination';
 
 export interface EventList {
-  [p: string]: Event
+  [p: string]: Event[];
 }
 
 export interface GetEventsParams {
-  group_by_date: string
-  start_date: string
-  per_page: string
-  page: string
-  categories?: string
-  tags?: string
+  group_by_date: string;
+  start_date: string;
+  per_page: string;
+  page: string;
+  categories?: string;
+  tags?: string;
 }
 
 const defaultParams: GetEventsParams = {
@@ -24,7 +24,7 @@ const defaultParams: GetEventsParams = {
   start_date: new Date().toISOString(),
   per_page: '8',
   page: '1'
-}
+};
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,6 @@ export class EventsService {
     return this.http.get<ResponseObject<Pagination<EventList>>>(`${API.EVENTS}`, { params: {
       ...defaultParams,
       ...params
-    }})
+    }});
   }
 }

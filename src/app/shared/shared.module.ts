@@ -7,8 +7,7 @@ import { CalendarEventComponent } from './components/calendar-event/calendar-eve
 @NgModule({
   declarations: [CalendarEventComponent],
   imports: [
-    CommonModule,
-    
+    CommonModule
   ],
   exports: [CalendarEventComponent]
 })

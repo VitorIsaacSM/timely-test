@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventsService } from 'src/app/shared/services/events/events.service';
+import { EventList, EventsService } from 'src/app/shared/services/events/events.service';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +8,18 @@ import { EventsService } from 'src/app/shared/services/events/events.service';
 })
 export class HomeComponent implements OnInit {
 
+  events: EventList = {};
+
   constructor(private eventsService: EventsService) { }
 
   ngOnInit() {
     this.eventsService.getEvents().subscribe(res => {
-      console.log(res.data.items)
-    })
+      this.events = res.data.items;
+    });
+  }
+
+  get eventDates(): string[] {
+    return Object.keys(this.events);
   }
 
 }
