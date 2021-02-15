@@ -22,4 +22,6 @@ describe('FiltersComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // should emit the form value when clicking the applt button
 });
