@@ -3,6 +3,7 @@ import { Pagination } from 'src/app/shared/models/pagination';
 import { EventList, EventsService, GetEventsParams } from 'src/app/shared/services/events/events.service';
 import { finalize } from 'rxjs/operators';
 import { FiltersService } from 'src/app/shared/services/filters/filters.service';
+import { FilterForm } from 'src/app/shared/components/filters/filters.component';
 
 @Component({
   selector: 'app-home',
@@ -20,16 +21,20 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.loadEvents();
     this.filtersService.filterSubject.subscribe(filterValues => {
-      const params: GetEventsParams = {
-        per_page: `${filterValues.pageSize || this.pagination.size}`,
-        page: '1'
-      };
-      if (filterValues.category) { params.categories = filterValues.category; }
-      if (filterValues.tag) { params.tags = filterValues.tag; }
-      if (filterValues.startDate) { params.start_date = filterValues.startDate; }
-      this.filterParams = params;
+      this.filterParams = this.mapToFetchEventParams(filterValues);
       this.loadEvents();
     });
+  }
+
+  mapToFetchEventParams(filterValues: FilterForm): GetEventsParams {
+    const params: GetEventsParams = {
+      per_page: `${filterValues.pageSize || this.pagination.size}`,
+      page: '1'
+    };
+    if (filterValues.category) { params.categories = filterValues.category; }
+    if (filterValues.tag) { params.tags = filterValues.tag; }
+    if (filterValues.startDate) { params.start_date = filterValues.startDate; }
+    return params;
   }
 
   loadEvents(params: GetEventsParams = {}) {
@@ -49,12 +54,9 @@ export class HomeComponent implements OnInit {
     return Object.keys(this.events);
   }
 
-  // Returns the current page based on the amount of items being displayed
   get currentPage(): number {
     return (this.pagination.from / this.pagination.size) + 1;
   }
-
-  // Returns the total number of pages based on the total items and the size
   get totalPages(): number {
     return Math.ceil(this.pagination.total / this.pagination.size);
   }
