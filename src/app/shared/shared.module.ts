@@ -15,6 +15,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule
   ],
-  exports: [EventCardComponent, HeaderComponent, PaginationComponent, LoadingComponent]
+  exports: [EventCardComponent, HeaderComponent, PaginationComponent, LoadingComponent, FiltersComponent]
 })
 export class SharedModule { }
