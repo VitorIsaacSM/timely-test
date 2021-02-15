@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pagination } from 'src/app/shared/models/pagination';
 import { EventList, EventsService, GetEventsParams } from 'src/app/shared/services/events/events.service';
 import { finalize } from 'rxjs/operators';
+import { FiltersService } from 'src/app/shared/services/filters/filters.service';
 
 @Component({
   selector: 'app-home',
@@ -11,17 +12,29 @@ import { finalize } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
 
   pagination: Pagination<EventList>;
+  filterParams: GetEventsParams;
   isLoadingPage = true;
 
-  constructor(private eventsService: EventsService) { }
+  constructor(private eventsService: EventsService, private filtersService: FiltersService) { }
 
   ngOnInit() {
     this.loadEvents();
+    this.filtersService.filterSubject.subscribe(filterValues => {
+      const params: GetEventsParams = {
+        per_page: `${filterValues.pageSize || this.pagination.size}`,
+        page: '1'
+      };
+      if (filterValues.category) { params.categories = filterValues.category; }
+      if (filterValues.tag) { params.tags = filterValues.tag; }
+      if (filterValues.startDate) { params.start_date = filterValues.startDate; }
+      this.filterParams = params;
+      this.loadEvents();
+    });
   }
 
   loadEvents(params: GetEventsParams = {}) {
     this.isLoadingPage = true;
-    this.eventsService.getEvents(params)
+    this.eventsService.getEvents({...this.filterParams, ...params})
       .pipe(finalize(() => this.isLoadingPage = false))
       .subscribe(res => this.pagination = res.data);
   }

@@ -22,7 +22,7 @@ export interface GetEventsParams {
 const defaultParams: GetEventsParams = {
   group_by_date: '1',
   start_date: new Date().toISOString(),
-  per_page: '8',
+  per_page: '10',
   page: '1'
 };
 

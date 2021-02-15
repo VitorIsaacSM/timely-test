@@ -1,0 +1,37 @@
+<div class="position-absolute container filters-container" *ngIf="open">
+  <div class="toast-container position-absolute top-0 end-0 p-3">
+    <div class="toast">
+      <div class="toast-header d-flex align-items-center justify-content-between">
+        <h5 class="my-1"><strong class="me-auto">Filters</strong></h5>
+        <i (click)="eventClose.emit()" class="fas fa-times fa-lg pointer"></i>
+      </div>
+      <div class="toast-body">
+        <form class="p-1" (submit)="apply(); $event.stopPropagation()" [formGroup]="form">
+          <div class="mb-3">
+            <label class="form-label" for="category-input">Categories</label>
+            <select class="form-control" id="category-input" formControlName="category">
+              <option value="" selected>Select a category</option>
+              <option *ngFor="let category of filters.categories" [value]="category.id">{{ category.title }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="tag-input">Tags</label>
+            <select class="form-control" id="tag-input" formControlName="tag">
+              <option value="" selected>Select a tag</option>
+              <option *ngFor="let tag of filters.tags" [value]="tag.id">{{ tag.title }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="start-date-input" class="form-label">Start date</label>
+            <input class="form-control" type="date" id="start-date-input" formControlName="startDate">
+          </div>
+          <div class="mb-3">
+            <label for="events-page-input" class="form-label">Events per page</label>
+            <input class="form-control" min="1" max="100" type="number" id="events-page-input" formControlName="pageSize">
+          </div>
+          <button type="submit" class="btn btn-secondary">Apply filter</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

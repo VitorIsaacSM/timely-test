@@ -1,4 +1,4 @@
-<div class="card container">
+<div class="card container h-100">
   <div class="row">
     <img
       class="col-sm-3 col-md-12 p-0"
@@ -14,11 +14,11 @@
         <div class="d-flex align-items-center justify-content-between">
           <p class="card-text mb-0">
             <small class="text-muted">
-              <i class="far fa-clock"></i>
-              {{ event.start_datetime | date:'shortTime' }}
+              <i class="far fa-clock mr-1"></i>
+              {{ event.start_datetime | date:'shortTime' }} - {{ event.end_datetime | date:'shortTime' }}
             </small>
           </p>
-          <a class="mb-0 card-link" (click)="eventSeeDetails.emit(event)">See details</a>
+          <!-- <a class="mb-0 card-link" (click)="eventSeeDetails.emit(event)">See details</a> -->
         </div>
       </div>
     </div>

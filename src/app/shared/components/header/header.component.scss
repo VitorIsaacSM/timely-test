@@ -15,4 +15,8 @@
     height: 30px;
     object-fit: contain;
   }
+
+  p.pointer {
+    user-select: none;
+  }
 }

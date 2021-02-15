@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container pt-4">
   <div class="d-flex justify-content-center" *ngIf="isLoadingPage">
     <app-loading></app-loading>
   </div>
   <ng-container *ngIf="!isLoadingPage">
-    <div *ngFor="let date of eventDates; let i = index" class="p-2">
+    <div *ngFor="let date of eventDates; let i = index" class="pt-1">
       <h4 class="mb-3 mt-3">
         <i class="fas fa-calendar-day"></i>
         {{ date | date:'fullDate' }}
@@ -13,7 +13,11 @@
           <app-event-card [event]="event"></app-event-card>
         </div>
       </div>
+      <hr>
     </div>
+    <h4 *ngIf="!eventDates.length" class="mb-3 mt-3">
+      No results found...
+    </h4>
     <app-pagination
       [currentPage]="currentPage"
       [totalPages]="totalPages"

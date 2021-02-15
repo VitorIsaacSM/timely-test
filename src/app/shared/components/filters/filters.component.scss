@@ -1,0 +1,23 @@
+@import 'index';
+
+div.filters-container {
+  .toast-container {
+    right: 20px;
+    .toast {
+      width: 750px;
+      opacity: 1;
+
+      .toast-header {
+        background-color: rgba(white, 0.95);
+      }
+
+      .toast-body {
+        background-color: rgba(white, 0.85);
+      }
+
+      @include phone-md {
+        width: 90vw;
+      }
+    }
+  }
+}

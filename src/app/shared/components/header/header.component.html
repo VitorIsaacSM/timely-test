@@ -1,4 +1,17 @@
 <div class="header">
-  <img class="header-logo" src="assets/timely-logo.svg" alt="Timely logo">
-
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <img class="header-logo" src="assets/timely-logo.svg" alt="Timely logo">
+      <p class="m-0 pointer" (click)="toggleFilter()" unselectable="on">
+        <i class="fas fa-search"></i>
+        Filters
+      </p>
+    </div>
+    <app-filters
+      [open]="filterOpen"
+      [filters]="filters"
+      (eventClose)="toggleFilter()"
+      (eventApply)="applyFilter($event)">
+    </app-filters>
+  </div>
 </div>
