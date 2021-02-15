@@ -11,14 +11,14 @@
             <label class="form-label" for="category-input">Categories</label>
             <select class="form-control" id="category-input" formControlName="category">
               <option value="" selected>Select a category</option>
-              <option *ngFor="let category of filters.categories" [value]="category.id">{{ category.title }}</option>
+              <option *ngFor="let category of filters?.categories" [value]="category.id">{{ category.title }}</option>
             </select>
           </div>
           <div class="mb-3">
             <label class="form-label" for="tag-input">Tags</label>
             <select class="form-control" id="tag-input" formControlName="tag">
               <option value="" selected>Select a tag</option>
-              <option *ngFor="let tag of filters.tags" [value]="tag.id">{{ tag.title }}</option>
+              <option *ngFor="let tag of filters?.tags" [value]="tag.id">{{ tag.title }}</option>
             </select>
           </div>
           <div class="mb-3">
