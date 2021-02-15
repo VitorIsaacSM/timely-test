@@ -15,7 +15,7 @@ export class PaginationComponent {
     this.eventChangePage.emit(page);
   }
   next() {
-    if (this.currentPage === this.totalPages) {
+    if (this.currentPage >= this.totalPages) {
       return;
     }
     this.emit(this.currentPage + 1);
