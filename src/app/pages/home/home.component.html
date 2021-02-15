@@ -8,7 +8,7 @@
         <i class="fas fa-calendar-day"></i>
         {{ date | date:'fullDate' }}
       </h4>
-      <div class="row row-cols-md-3 row-cols-1 g-2">
+      <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-2">
         <div *ngFor="let event of events[date]" class="col mb-3">
           <app-event-card [event]="event"></app-event-card>
         </div>
